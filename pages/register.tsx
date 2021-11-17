@@ -2,7 +2,6 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-// import { getValidSessionByToken } from '../util/database';
 import { Errors } from '../util/types';
 import { RegisterResponse } from './api/register';
 
@@ -14,6 +13,7 @@ export default function RegisterPage(props) {
 
   const [errors, setErrors] = useState<Errors>([]);
   const router = useRouter();
+  // props.refreshUsername();
   return (
     <Layout>
       <h1 className="text-4xl text-center font-bold mb-2 md:mb-0 pr-4">
@@ -21,6 +21,7 @@ export default function RegisterPage(props) {
       </h1>
 
       <form
+        className="md:flex md:justify-center mb-6 mt-12"
         onSubmit={async (event) => {
           event.preventDefault();
 
@@ -34,7 +35,7 @@ export default function RegisterPage(props) {
               username: username,
               email: email,
               password: password,
-              // csrfToken: props.csrfToken,
+              csrfToken: props.csrfToken,
             }),
           });
 
@@ -52,7 +53,7 @@ export default function RegisterPage(props) {
               ? router.query.returnTo
               : `/users/${registerJson.user.id}`;
 
-          // props.refreshUsername();
+          props.refreshUsername();
 
           router.push(destination);
         }}
@@ -107,7 +108,7 @@ export default function RegisterPage(props) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { getValidSessionByToken } = await import('../util/database');
-  // const { createToken } = await import('../util/csrf');
+  const { createToken } = await import('../util/csrf');
 
   // Redirect from HTTP to HTTPS on Heroku
   if (
@@ -133,7 +134,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/users',
         permanent: false,
       },
     };
@@ -141,7 +142,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   return {
     props: {
-      // csrfToken: createToken(),
+      csrfToken: createToken(),
     },
   };
 }

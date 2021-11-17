@@ -13,7 +13,7 @@ export default function LoginPage(props) {
   const router = useRouter();
   return (
     <Layout>
-      <h1 className="text-4xl text-center font-bold mb-2 md:mb-0 pr-4">
+      <h1 className="text-4xl text-center font-bold mb-2 md:mb-0 pr-4 mt-10">
         Login
       </h1>
 
@@ -45,10 +45,11 @@ export default function LoginPage(props) {
               ? router.query.returnTo
               : `/users/${loginJson.user.id}`;
 
-          props.callProfile();
+          // props.refreshUsername();
 
           router.push(destination);
         }}
+        className="md:flex md:justify-center mb-6 mt-12"
       >
         <label className="block text-gray-500 font-bold mb-1 md:mb-0 pr-4">
           Username
@@ -113,7 +114,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
     return {
       redirect: {
-        destination: '/',
+        destination: `/users`,
         permanent: false,
       },
     };

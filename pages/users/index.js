@@ -10,27 +10,28 @@ export default function Users(props) {
       <Head>
         <title>Users</title>
       </Head>
-      <h2>Users List</h2>
-      <ul className="list-disc pl-8">
-        {props.users.map((user) => {
-          return (
-            <li key={`user-li-${user.id}`}>
-              {user.username}:{' '}
-              <Link href={`/users/${user.id}`}>
-                <a>{user.username} single page</a>
-              </Link>
-              <div>{user.following ? '❤️' : '🖤'}</div>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="text-center mb-2 md:mb-0 pr-4 mt-32">
+        <h2 className="font-bold text-2xl">Users List</h2>
+        <ul className="list-disc mt-8">
+          {props.users.map((user) => {
+            return (
+              <li key={`user-li-${user.id}`}>
+                {user.username}:{' '}
+                <Link href={`/users/${user.id}`}>
+                  <a>{user.username} single page</a>
+                </Link>
+                <div>{user.following ? '❤️' : '🖤'}</div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps(context) {
   const { getUsers } = await import('../../util/database');
-
   const users = await getUsers();
   console.log(users);
   const cookies = context.req.cookies.following || '[]';

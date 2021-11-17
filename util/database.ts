@@ -199,23 +199,24 @@ export async function getWorkoutsByUserId(userId: number) {
   return workouts.map((workout) => camelcaseKeys(workout));
 }
 
-// export async function getUserBySessionToken(sessionToken: string | undefined) {
-//   if (!sessionToken) return undefined;
+export async function getUserBySessionToken(token: string | undefined) {
+  if (!token) return undefined;
 
-//   const [user] = await sql<[User | undefined]>`
-//     SELECT
-//       users.id,
-//       users.email,
-//       users.username
-//     FROM
-//       sessions,
-//       users
-//     WHERE
-//       sessions.token = ${sessionToken} AND
-//       sessions.user_id = users.id
-//   `;
-//   return user && camelcaseKeys(user);
-// }
+  const [user] = await sql<[User | undefined]>`
+    SELECT
+      users.id,
+      users.name,
+      users.email,
+      users.username
+    FROM
+      sessions,
+      users
+    WHERE
+      sessions.sessions_token = ${token} AND
+      sessions.user_id = users.id
+  `;
+  return user && camelcaseKeys(user);
+}
 
 export async function getValidSessionByToken(token: string) {
   if (!token) return undefined;

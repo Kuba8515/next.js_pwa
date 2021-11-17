@@ -66,12 +66,12 @@ export default function Users(props) {
     setUserList(newState);
   }
   return (
-    <Layout>
+    <Layout username={props.username}>
       <Head>
-        <title>users</title>
+        <title>Admin-Page</title>
       </Head>
       <h2>Users List</h2>
-      <h3>create user:</h3>
+      <h3>Create user:</h3>
       <label className="block text-gray-700 text-sm font-bold mb-2">
         name:
         <input
@@ -159,10 +159,21 @@ export default function Users(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const baseUrl = process.env.BASE_URL;
   const userResponse = await fetch(`${baseUrl}/api/users`);
   const users = await userResponse.json();
+  const sessionToken = context.req.cookies.sessionToken;
+  const { getValidSessionByToken } = await import('../../util/database');
+  const session = await getValidSessionByToken(sessionToken);
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login?returnTo=/admin/users',
+        permanent: false,
+      },
+    };
+  }
   return {
     props: { users, baseUrl },
   };

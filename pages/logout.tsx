@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 
-export default function Logout() {
+export default function Logout(props) {
+  // props.refreshUsername();
   return 'Logged out';
 }
 

@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 
 export default function Layout(props) {
   return (
-    <div className="px-20 h-screen">
+    <div>
       <Navbar username={props.username} />
       {props.children}
       <Footer />

@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { hashPassword } from '../../util/auth';
 import { createSerializedRegisterSessionTokenCookie } from '../../util/cookies';
+import { verifyCsrfToken } from '../../util/csrf';
 import {
   createSession,
   deleteExpiredSessions,
@@ -31,12 +32,12 @@ export default async function registerHandler(
     return;
   }
 
-  // if (!req.body.csrfToken || !verifyCsrfToken(req.body.csrfToken)) {
-  //   res.status(400).send({
-  //     errors: [{ message: 'Request does not contain valid CSRF token' }],
-  //   });
-  //   return;
-  // }
+  if (!req.body.csrfToken || !verifyCsrfToken(req.body.csrfToken)) {
+    res.status(400).send({
+      errors: [{ message: 'Request does not contain valid CSRF token' }],
+    });
+    return;
+  }
 
   try {
     const username = req.body.username;
@@ -65,7 +66,7 @@ export default async function registerHandler(
     deleteExpiredSessions();
 
     if (!user) {
-      res.status(500).send({ errors: [{ message: 'User not create' }] });
+      res.status(500).send({ errors: [{ message: 'User not created' }] });
       return;
     }
 
