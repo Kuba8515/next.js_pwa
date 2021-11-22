@@ -2,11 +2,10 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import Layout from '../components/Layout';
-// import { getValidSessionByToken } from '../util/database';
 import { Errors } from '../util/types';
 import { LoginResponse } from './api/login';
 
-export default function LoginPage(props) {
+export default function LoginPage(props: { refreshUsername: () => void }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Errors>([]);
@@ -45,7 +44,7 @@ export default function LoginPage(props) {
               ? router.query.returnTo
               : `/users/${loginJson.user.id}`;
 
-          // props.refreshUsername();
+          props.refreshUsername();
 
           router.push(destination);
         }}
@@ -76,7 +75,7 @@ export default function LoginPage(props) {
         </button>
       </form>
 
-      <div>
+      <div className="text-red">
         {errors.map((error) => (
           <div key={`error-${error.message}`}>{error.message}</div>
         ))}

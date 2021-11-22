@@ -1,17 +1,23 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const WorkoutCard = ({ image, name }) => {
+export default function WorkoutCard(props) {
   return (
-    <div className="border-solid border-4 border-light-blue-500 rounded-lg p-8 py-4 m-4">
-      <Image alt="workout" src={image} height={200} width={320} />
-      <Link href={`/workout/${name.toLowerCase()}`}>
-        <div>
-          <h3>{name}</h3>
-          <p>ADD NOW</p>
-        </div>
-      </Link>
+    <div className="flex border-2 p-3 rounded shadow-sm">
+      <div className="flex flex-col ml-4">
+        {/* <Link href={`/workouts/${props.link}`}> */}
+        {/* <a> */}
+        <h3 className="text-m font-bold">{props.title}</h3>
+        <p className="text-l">{props.description}</p>
+        <a
+          className="hover:bg-blue-100 text-blue-400 pt-4"
+          href={`/workouts/${props.link}`}
+        >
+          View this routine
+        </a>
+        {/* </a> */}
+        {/* </Link> */}
+      </div>
     </div>
   );
-};
-export default WorkoutCard;
+}

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import { AddIcon } from '../../components/Icons';
 import Layout from '../../components/Layout';
 import WorkoutCard from '../../components/WorkoutCard';
 import {
@@ -7,8 +8,6 @@ import {
   getParsedCookie,
   setParsedCookie,
 } from '../../util/cookies';
-
-// import { getUser } from '../../util/database';
 
 export default function User(props) {
   const [following, setFollowing] = useState(
@@ -43,54 +42,36 @@ export default function User(props) {
         <strong>Personal User Page of {props.user.name}</strong>
         <div>Username: {props.user.username}</div>
         <div>Email: {props.user.email}</div>
-        <button onClick={followClickHandler}>
-          {following.some((cookieObj) => props.user.id === cookieObj.id)
-            ? 'unfollow'
-            : 'follow'}
-        </button>
         <br />
         <strong>User Workout</strong>
-        {props.workouts.map((workout) => {
-          return (
-            <div key={`workout-${workout.id}`}>
-              <span>{workout.title}</span>
-              <br />
-              <span>{workout.description}</span>
-            </div>
-          );
-        })}
-        <main className="p-4">
-          <div className="flex flex-wrap justify-between">
-            <WorkoutCard
-              image="/images/beginner.jpg"
-              name="Very beginner workout plan"
-            />
-            <WorkoutCard
-              image="/images/lean_and_mean.jpg"
-              name="Lean and mean"
-            />
-            <WorkoutCard
-              image="/images/bodyweight.jpg"
-              name="Bodyweight workout"
-            />
-            <WorkoutCard image="/images/strong.jpg" name="Strong as an ox" />
-            <WorkoutCard image="/images/bulkup.jpg" name="Bulk up" />
-            <WorkoutCard image="/images/bigarms.jpg" name="Big friggin arms" />
-            <WorkoutCard image="/images/beach.jpg" name="Build for the beach" />
-          </div>
-        </main>
+        <div className="md:mb-0 mt-4 text-center">
+          <ul className="m-4 align-center p-8 ml-16 mr-16 gap-8 list-none">
+            {props.workouts.map((workout) => {
+              return (
+                <li key={`workout-li-${workout.id}`}>
+                  <WorkoutCard
+                    title={workout.title}
+                    link={workout.id}
+                    description={workout.description}
+                    image={workout.imageUrl}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </Layout>
   );
 }
 
 export async function getServerSideProps(context) {
-  const { getUser, getWorkoutsByUserId, getUserBySessionToken } = await import(
+  const { getUser, getUserBySessionToken, getWorkouts } = await import(
     '../../util/database'
   );
   console.log(context.query.userId);
   const user = await getUser(Number(context.query.userId));
-  const workouts = await getWorkoutsByUserId(context.query.userId);
+  const workouts = await getWorkouts(context.query.id);
   const sessionToken = context.req.cookies.sessionToken;
   const sessionUser = await getUserBySessionToken(sessionToken);
   console.log(sessionUser);

@@ -1,87 +1,3 @@
-const Add = ({ lineHeight, lineWidth, circleHeight, circleWidth }) => {
-  return (
-    <button
-      aria-label="add"
-      className={`inline-flex items-center justify-center ${circleHeight} ${circleWidth} mr-2 text-indigo-100 transition-colors bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800`}
-    >
-      <svg
-        className={`${lineHeight} ${lineWidth} fill-current`}
-        viewBox="0 0 20 20"
-      >
-        <path
-          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-          clipRule="evenodd"
-          fillRule="evenodd"
-        ></path>
-      </svg>
-    </button>
-  );
-};
-
-const Paste = ({ lineHeight, lineWidth, circleHeight, circleWidth }) => {
-  return (
-    <button
-      aria-label="Paste"
-      className={`inline-flex items-center justify-center ${circleHeight} ${circleWidth} mr-2 text-indigo-100 transition-colors bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800`}
-    >
-      <svg
-        className={`${lineHeight} ${lineWidth} fill-current`}
-        viewBox="0 0 20 20"
-      >
-        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-      </svg>
-    </button>
-  );
-};
-
-const Correct = () => {
-  return (
-    <button
-      aria-label="correct"
-      className=" inline-flex items-center justify-center w-10 h-10 text-white transition-colors bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        height="24"
-        width="24"
-        fill="currentColor"
-        className="fill-current text-white"
-      >
-        <path
-          fillRule="evenodd"
-          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </button>
-  );
-};
-
-const Delete = () => {
-  return (
-    <button className=" inline-flex items-center justify-center w-10 h-10 text-gray-500 transition-colors rounded-lg focus:shadow-outline hover:bg-indigo-900  hover:text-white">
-      <svg
-        aria-label="delete"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        height="24"
-        width="24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-        />
-      </svg>
-    </button>
-  );
-};
-
 const Home = () => {
   return (
     <button>
@@ -105,51 +21,6 @@ const Home = () => {
   );
 };
 
-const Calender = ({ onClick }) => {
-  return (
-    <button onClick={onClick} aria-label="calender">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        height="24"
-        width="24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-        />
-      </svg>
-    </button>
-  );
-};
-
-const Close = () => {
-  return (
-    <button
-      className="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-      aria-label="close"
-    >
-      <svg
-        className="w-4 h-4"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        role="img"
-        aria-hidden="true"
-      >
-        <path
-          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-          clipRule="evenodd"
-          fillRule="evenodd"
-        ></path>
-      </svg>
-    </button>
-  );
-};
-
 const Moon = () => {
   return (
     <svg
@@ -159,7 +30,7 @@ const Moon = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"
-      className="fill-current text-gray-700"
+      className="fill-current text-gray-900"
     >
       <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
     </svg>
@@ -183,27 +54,6 @@ const Sun = () => {
         clipRule="evenodd"
       />
     </svg>
-  );
-};
-
-const Edit = () => {
-  return (
-    <button
-      aria-label="edit"
-      className=" inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors rounded-lg focus:shadow-outline  hover:bg-indigo-900  hover:text-white"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        height="20"
-        width="20"
-        stroke="currentColor"
-        className="fill-current"
-      >
-        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-      </svg>
-    </button>
   );
 };
 
@@ -245,83 +95,302 @@ const LiftLogo = () => {
   );
 };
 
-const RightArrow = () => {
+const Users = () => {
   return (
-    <button
-      aria-label="right"
-      className=" w-5 h-5 text-gray-600 dark:text-gray-300"
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 16"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </button>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+      />
+    </svg>
   );
 };
 
-const DownArrow = () => {
+const ChevronDownIcon = () => {
   return (
-    <button
-      aria-label="down"
-      className=" w-5 h-5 text-gray-600 dark:text-gray-300"
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 14"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </button>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
   );
 };
 
-const CopySet = () => {
+const EditInactiveIcon = (props) => {
   return (
-    <div
-      aria-label="Copy Sets"
-      className=" cursor-pointer inline-flex items-center justify-center w-10 h-10 text-gray-500 transition-colors rounded-lg focus:shadow-outline hover:bg-indigo-900  hover:text-white"
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor"
-        height="24"
-        width="24"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
-        <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
-      </svg>
-    </div>
+      <path
+        d="M4 13V16H7L16 7L13 4L4 13Z"
+        fill="#EDE9FE"
+        stroke="#A78BFA"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+};
+
+const EditActiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 13V16H7L16 7L13 4L4 13Z"
+        fill="#8B5CF6"
+        stroke="#C4B5FD"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+};
+
+const DuplicateInactiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4H12V12H4V4Z"
+        fill="#EDE9FE"
+        stroke="#A78BFA"
+        strokeWidth="2"
+      />
+      <path
+        d="M8 8H16V16H8V8Z"
+        fill="#EDE9FE"
+        stroke="#A78BFA"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+};
+
+const DuplicateActiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4H12V12H4V4Z"
+        fill="#8B5CF6"
+        stroke="#C4B5FD"
+        strokeWidth="2"
+      />
+      <path
+        d="M8 8H16V16H8V8Z"
+        fill="#8B5CF6"
+        stroke="#C4B5FD"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+};
+
+const ArchiveInactiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="5"
+        y="8"
+        width="10"
+        height="8"
+        fill="#EDE9FE"
+        stroke="#A78BFA"
+        strokeWidth="2"
+      />
+      <rect
+        x="4"
+        y="4"
+        width="12"
+        height="4"
+        fill="#EDE9FE"
+        stroke="#A78BFA"
+        strokeWidth="2"
+      />
+      <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
+    </svg>
+  );
+};
+
+const ArchiveActiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="5"
+        y="8"
+        width="10"
+        height="8"
+        fill="#8B5CF6"
+        stroke="#C4B5FD"
+        strokeWidth="2"
+      />
+      <rect
+        x="4"
+        y="4"
+        width="12"
+        height="4"
+        fill="#8B5CF6"
+        stroke="#C4B5FD"
+        strokeWidth="2"
+      />
+      <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
+    </svg>
+  );
+};
+
+const MoveInactiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M10 4H16V10" stroke="#A78BFA" strokeWidth="2" />
+      <path d="M16 4L8 12" stroke="#A78BFA" strokeWidth="2" />
+      <path d="M8 6H4V16H14V12" stroke="#A78BFA" strokeWidth="2" />
+    </svg>
+  );
+};
+
+const MoveActiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M10 4H16V10" stroke="#C4B5FD" strokeWidth="2" />
+      <path d="M16 4L8 12" stroke="#C4B5FD" strokeWidth="2" />
+      <path d="M8 6H4V16H14V12" stroke="#C4B5FD" strokeWidth="2" />
+    </svg>
+  );
+};
+
+const DeleteInactiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="5"
+        y="6"
+        width="10"
+        height="10"
+        fill="#EDE9FE"
+        stroke="#A78BFA"
+        strokeWidth="2"
+      />
+      <path d="M3 6H17" stroke="#A78BFA" strokeWidth="2" />
+      <path d="M8 6V4H12V6" stroke="#A78BFA" strokeWidth="2" />
+    </svg>
+  );
+};
+
+const DeleteActiveIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="5"
+        y="6"
+        width="10"
+        height="10"
+        fill="#8B5CF6"
+        stroke="#C4B5FD"
+        strokeWidth="2"
+      />
+      <path d="M3 6H17" stroke="#C4B5FD" strokeWidth="2" />
+      <path d="M8 6V4H12V6" stroke="#C4B5FD" strokeWidth="2" />
+    </svg>
+  );
+};
+
+const AddIcon = () => {
+  return (
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
   );
 };
 
 export {
-  Add,
-  Calender,
-  Close,
-  CopySet,
-  Correct,
-  Delete,
-  DownArrow,
-  Edit,
+  AddIcon,
+  ArchiveActiveIcon,
+  ArchiveInactiveIcon,
+  ChevronDownIcon,
+  DeleteActiveIcon,
+  DeleteInactiveIcon,
+  DuplicateActiveIcon,
+  DuplicateInactiveIcon,
+  EditActiveIcon,
+  EditInactiveIcon,
   Home,
   LiftLogo,
   Logo,
   Moon,
-  Paste,
-  RightArrow,
+  MoveActiveIcon,
+  MoveInactiveIcon,
   Sun,
+  Users,
 };

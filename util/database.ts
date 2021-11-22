@@ -15,6 +15,15 @@ export type Workout = {
   description: string;
 };
 
+export type Exercise = {
+  id: number;
+  title: string;
+  description: string;
+  benefits: string;
+  imageUrl: string;
+  bodyPart: string | null;
+};
+
 export type UserWithPasswordHash = User & {
   passwordHash: string;
 };
@@ -30,7 +39,7 @@ dotenvSafe.config();
 
 // Type needed for the connection function below
 declare module globalThis {
-  let __postgresSqlClient: ReturnType<typeof postgres> | undefined;
+  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
 }
 
 function connectOneTimeToDatabase() {
@@ -40,10 +49,10 @@ function connectOneTimeToDatabase() {
     sql = postgres({ ssl: { rejectUnauthorized: false } });
   } else {
     // In development, connect only once to database !
-    if (!globalThis.__postgresSqlClient) {
-      globalThis.__postgresSqlClient = postgres();
+    if (!globalThis.postgresSqlClient) {
+      globalThis.postgresSqlClient = postgres();
     }
-    sql = globalThis.__postgresSqlClient;
+    sql = globalThis.postgresSqlClient;
   }
 
   return sql;
@@ -181,8 +190,8 @@ export async function deleteUserById(id: number) {
   return user && camelcaseKeys(user);
 }
 
-export async function getWorkoutsByUserId(userId: number) {
-  const workouts = await sql<Workout[]>`
+export async function getWorkoutByUserId(userId: number) {
+  const workouts = await sql<[Workout]>`
     SELECT
       workouts.id,
       workouts.title,
@@ -271,4 +280,85 @@ export async function deleteSessionByToken(token: string) {
   `;
 
   return sessions.map((session) => camelcaseKeys(session))[0];
+}
+
+export async function getExercises() {
+  const exercises = await sql<Exercise[]>`
+    SELECT
+      id, title, description, benefits, image_url, body_part
+    FROM
+      exercises;
+  `;
+  return exercises.map((exercise) => {
+    return camelcaseKeys(exercise);
+  });
+}
+
+export async function getExercise(id: number) {
+  const [exercise] = await sql<[Exercise]>`
+    SELECT
+      id, title, description, benefits, image_url, body_part
+    FROM
+      exercises
+    WHERE
+      id = ${id};
+  `;
+
+  return camelcaseKeys(exercise);
+}
+
+export async function getWorkouts() {
+  const workouts = await sql<Workout[]>`
+    SELECT
+      id, title, description
+    FROM
+      workouts;
+  `;
+  return workouts.map((workout) => {
+    return camelcaseKeys(workout);
+  });
+}
+
+export async function getWorkout(id: number) {
+  const [workout] = await sql<[Workout]>`
+    SELECT
+      id, title, description, image_url
+    FROM
+      workouts
+    WHERE
+      id = ${id};
+  `;
+
+  return camelcaseKeys(workout);
+}
+
+export async function getExercisebyWorkout(workoutId: number) {
+  const exercises = await sql<[Exercise]>`
+    SELECT
+      exercises.id,
+      exercises.title,
+      exercises.description
+    FROM
+      workouts,
+      exercises_workouts,
+      exercises
+    WHERE
+      workouts.id = ${workoutId} AND
+      exercises_workouts.workout_id = workouts.id AND
+      exercises.id = exercises_workouts.exercise_id;
+  `;
+  return exercises.map((exercise) => camelcaseKeys(exercise));
+}
+
+export async function getExercisesbyBodypart(bodyPart: string) {
+  // if (!bodyPart) return undefined;
+  const exercises = await sql<Exercise[]>`
+    SELECT
+      body_part
+    FROM
+      exercises
+    WHERE
+      body_part = ${bodyPart}
+  `;
+  return exercises.map((exercise) => camelcaseKeys(exercise));
 }

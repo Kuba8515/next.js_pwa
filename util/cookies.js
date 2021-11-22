@@ -40,7 +40,7 @@ export function addOrRemoveFromFollowingArray(
   return newCookie;
 }
 
-export function createSerializedRegisterSessionTokenCookie(sessionsToken) {
+export function createSerializedRegisterSessionTokenCookie(token) {
   // check if we are in production e.g. Heroku
   const isProduction = process.env.NODE_ENV === 'production';
 
@@ -49,7 +49,7 @@ export function createSerializedRegisterSessionTokenCookie(sessionsToken) {
   // a user makes a request)
   const maxAge = 60 * 5; // 5 minutes
 
-  return serialize('sessionToken', sessionsToken, {
+  return serialize('sessionToken', token, {
     maxAge: maxAge,
 
     expires: new Date(Date.now() + maxAge * 1000),

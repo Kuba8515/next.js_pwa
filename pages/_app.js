@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import { ThemeProvider } from 'next-themes';
 import { useCallback, useEffect, useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
@@ -22,11 +23,13 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div>
-      <Component
-        {...pageProps}
-        username={username}
-        refreshUsername={refreshUsername}
-      />
+      <ThemeProvider enableSystem={true} attribute="class">
+        <Component
+          {...pageProps}
+          username={username}
+          refreshUsername={refreshUsername}
+        />
+      </ThemeProvider>
     </div>
   );
 }

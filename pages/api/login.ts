@@ -69,11 +69,14 @@ export default async function loginHandler(
     deleteExpiredSessions();
 
     // 1. create the token
-    const token = crypto.randomBytes(64).toString('base64');
+    const sessionsToken = crypto.randomBytes(64).toString('base64');
     console.log('userWithPasswordHash', userWithPasswordHash);
 
     // 2. do a DB query to add the session record
-    const newSession = await createSession(token, userWithPasswordHash.id);
+    const newSession = await createSession(
+      sessionsToken,
+      userWithPasswordHash.id,
+    );
     console.log(newSession);
 
     // set the response to create the cookie in the browser
@@ -81,6 +84,7 @@ export default async function loginHandler(
     const cookie = createSerializedRegisterSessionTokenCookie(
       newSession.sessionsToken,
     );
+    console.log('cookie', cookie);
 
     // Important! Removing the password
     // hash from the response sent back

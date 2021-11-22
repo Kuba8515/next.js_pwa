@@ -5,7 +5,9 @@ import Layout from '../components/Layout';
 import { Errors } from '../util/types';
 import { RegisterResponse } from './api/register';
 
-export default function RegisterPage(props) {
+type Props = { refreshUsername: () => void; csrfToken: string };
+
+export default function RegisterPage(props: Props) {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -13,7 +15,6 @@ export default function RegisterPage(props) {
 
   const [errors, setErrors] = useState<Errors>([]);
   const router = useRouter();
-  // props.refreshUsername();
   return (
     <Layout>
       <h1 className="text-4xl text-center font-bold mb-2 md:mb-0 pr-4">
